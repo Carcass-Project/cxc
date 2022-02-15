@@ -8,5 +8,6 @@ namespace cxc.Binder.BoundNodes
 {
     public class BoundReturnNode : BoundNode
     {
+        public BoundExpressions.BoundExpression? Expression { get; set; }
     }
 }

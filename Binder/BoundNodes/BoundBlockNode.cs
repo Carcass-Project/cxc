@@ -8,5 +8,6 @@ namespace cxc.Binder.BoundNodes
 {
     public class BoundBlockNode : BoundNode
     {
+        public List<BoundNode> body = new List<BoundNode>();
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cxc.Binder.BoundNodes.BoundExpressions
 {
-    internal class BoundExpression
+    public class BoundExpression
     {
     }
 }

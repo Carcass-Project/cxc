@@ -8,8 +8,8 @@ namespace cxc.SymbolicResolution
 {
     public class Scope
     {
-        Scope? parent;
-        Dictionary<string, Symbol> symbols = new Dictionary<string, Symbol>();
+        public Scope? parent;
+        public Dictionary<string, Symbol> symbols = new Dictionary<string, Symbol>();
 
         public Symbol? Lookup(string name)
         {
