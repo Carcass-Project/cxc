@@ -50,7 +50,7 @@ namespace cxc.Binder
                 case IntLiteral:
                     var boundIntLiteral = new BoundIntLiteral();
                     boundIntLiteral.Value = int.Parse((expr as IntLiteral).Value);
-                    break;
+                    return boundIntLiteral;
                 default:
                     Console.WriteLine("Couldn't bind this expression, as it is unknown.");
                     return null;
@@ -66,6 +66,7 @@ namespace cxc.Binder
                     var fnstmt = x as FnDeclStatement;
                     var boundfnstmt = new BoundFunctionNode();
                     boundfnstmt.Name = fnstmt.name.Text;
+                    boundfnstmt.body = (BoundBlockNode)BindNode(fnstmt.body);
                     var type = DecideType(fnstmt.type.Text);
                     if (type == null)
                         Console.WriteLine("Could not decide function return type.");
@@ -83,7 +84,7 @@ namespace cxc.Binder
                     {
                         boundone.body.Add(BindNode(s));
                     }
-                    break;
+                    return boundone;
                 case StatementKind.RETURN:
                     var returnstmt = x as ReturnStatement;
                     var boundRet = new BoundReturnNode();
@@ -94,7 +95,7 @@ namespace cxc.Binder
             return null;
         }
 
-        public List<BoundNode> BindNodes(List<Statement> stmts)
+        public List<BoundNode> BindNodes(IReadOnlyList<Statement> stmts)
         {
             var nodes = new List<BoundNode>();
 

@@ -9,7 +9,9 @@ namespace cxc.Binder.BoundNodes
 
     public class BoundFunctionNode : BoundNode
     {
+        
         public string Name;
         public BasicTypes returnType;
+        public BoundBlockNode? body;
     }
 }

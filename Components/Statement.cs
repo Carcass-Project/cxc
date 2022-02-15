@@ -14,6 +14,6 @@ namespace cxc.Components
     }
     public class Statement
     {
-        public StatementKind kind;
+        public StatementKind kind { get; set; }
     }
 }

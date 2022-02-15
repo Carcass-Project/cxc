@@ -10,13 +10,14 @@ namespace cxc.Components.Statements
 {
     public class FnDeclStatement : Statement
     {
-        public StatementKind Kind = StatementKind.FUNC_DECL;
+      
         public IToken<CTokenType> type;
         public IToken<CTokenType> name;
         public BlockStatement body;
 
         public FnDeclStatement(IToken<CTokenType> type, IToken<CTokenType> name, BlockStatement body)
         {
+            kind = StatementKind.FUNC_DECL;
             this.type = type;
             this.name = name;
             this.body = body;

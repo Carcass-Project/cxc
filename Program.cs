@@ -2,9 +2,21 @@
 using Yoakke.SynKit.Parser;
 using Yoakke.SynKit.C.Syntax;
 using cxc;
+using cxc.Binder;
+using cxc.Binder.BoundNodes;
 using cxc.Components.Statements;
 
-
+void RecursiveWrite(List<BoundNode> nodes)
+{
+    foreach(BoundNode node in nodes)
+    {
+        Console.WriteLine(node);
+        foreach(BoundNode node2 in (node as BoundFunctionNode).body.body)
+        {
+            Console.WriteLine(node2);
+        }
+    }
+}
 
 void ReadFile(string path)
 {
@@ -15,14 +27,11 @@ void ReadFile(string path)
 
     if(program.IsOk)
     {
-        foreach(var x in program.Ok.Value)
-        {
-            Console.WriteLine(x);
-            foreach(var f in (x as FnDeclStatement).body._statements)
-            {
-                Console.WriteLine(f);
-            }
-        }
+        var binder = new Binder();
+        var nodes = binder.BindNodes(program.Ok.Value);
+        var emitter = new cxc.Emitter.Emitter();
+        emitter.Emit(nodes);
+        Console.WriteLine(emitter.emitter.GrabAssembly());
     }
     else
     {

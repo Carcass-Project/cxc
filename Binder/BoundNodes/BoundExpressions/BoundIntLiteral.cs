@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cxc.Binder.BoundNodes.BoundExpressions
 {
-    public class BoundIntLiteral
+    public class BoundIntLiteral : BoundExpression
     {
         public int Value;
     }

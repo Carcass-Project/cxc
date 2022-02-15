@@ -9,11 +9,12 @@ namespace cxc.Components.Statements
 {
     public class BlockStatement : Statement
     {
-        public StatementKind kind = StatementKind.BLOCK;
+        
         public IReadOnlyList<Statement> _statements;
 
         public BlockStatement(IReadOnlyList<Statement> statements)
         {
+            kind = StatementKind.BLOCK;
             _statements = statements;
         }
     }

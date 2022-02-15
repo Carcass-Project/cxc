@@ -9,6 +9,7 @@ namespace cxc.Binder.BoundNodes
     public enum BoundNodeType
     {
         FN_DECL,
+        BLOCK,
         RET
     }
 
