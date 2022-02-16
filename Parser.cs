@@ -29,10 +29,16 @@ namespace cxc
             return new BlockStatement(statements);
         }
 
-        [Rule("stmt: (KeywordInt|KeywordVoid|KeywordChar|KeywordDouble|KeywordFloat|KeywordLong|KeywordShort|KeywordBool|KeywordComplex) Identifier '(' ')' block_stmt ")]
-        private static Statement functionIntDeclaration(Token type, Token identifier, Token _1B, Token _2B, BlockStatement fnBody)
+        [Rule("stmt: type_identifier Identifier '(' (type_identifier Identifier (',' type_identifier Identifier)*)? ')' block_stmt ")]
+        private static Statement functionIntDeclaration(Token type, Token Identifier, Punctuated<Token, Token> paramList, Token _1B, Token _2B, BlockStatement fnBody)
         {
-            return new FnDeclStatement(type, identifier, fnBody);
+            return new FnDeclStatement(type, Identifier , fnBody);
+        }
+
+        [Rule("type_identifier: (KeywordInt|KeywordVoid|KeywordChar|KeywordDouble|KeywordFloat|KeywordLong|KeywordShort|KeywordBool|KeywordComplex)")]
+        private static Token typeident(Token ident)
+        {
+            return ident;
         }
 
         [Rule("stmt: KeywordReturn expression ';' ")]
